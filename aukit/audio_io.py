@@ -4,7 +4,7 @@
 # date: 2019/12/1
 """
 ### audio_io
-语音IO，语音保存、读取，语音格式转换，支持【.】操作符的字典。
+语音IO，语音保存、读取，支持wav和mp3格式，语音形式转换（np.array,bytes,io.BytesIO），支持【.】操作符的字典。
 """
 from scipy.io import wavfile
 from pathlib import Path
@@ -16,8 +16,9 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(os.path.splitext(os.path.basename(__name__))[0])
-_sr = 16000
 
+_sr = 16000
+_int16_max = 2 ** 15 - 1
 
 class Dict2Obj(dict):
     """支持【.】操作符的dict。"""
@@ -38,20 +39,16 @@ class Dict2Obj(dict):
 
 def load_wav(path, sr=None, with_sr=False):
     """
-    导入语音信号。
+    导入语音信号。支持wav和mp3格式。
     :param path: 文件路径。
     :param sr: 采样率，None: 自动识别采样率。
     :param with_sr: 是否返回采样率。
     :return: np.ndarray
     """
-    if sr is not None:
-        sr = sr or _sr
-        return load_wav_librosa(path, sr=sr, with_sr=with_sr)
-    else:
-        return load_wav_wavfile(path, sr=sr, with_sr=with_sr)
+    return load_wav_librosa(path, sr=sr, with_sr=with_sr)
 
 
-def save_wav(wav, path, sr=None):
+def save_wav(wav, path, sr=_sr):
     save_wav_wavfile(wav, path=path, sr=sr)
 
 
@@ -71,7 +68,7 @@ def save_wav_librosa(wav, path, sr=_sr):
 
 
 def save_wav_wavfile(wav, path, sr=_sr, volume=1.):
-    out = wav * 32767 * volume / max(0.01, np.max(np.abs(wav)))
+    out = wav * _int16_max * volume / max(0.01, np.max(np.abs(wav)))
     # proposed by @dsmiller
     wavfile.write(path, sr, out.astype(np.int16))
 
@@ -109,7 +106,7 @@ def anything2bytes(src, sr=_sr, volume=1.):
 
 if __name__ == "__main__":
     print(__file__)
-    inpath = r"E:\data\temp\01.wav"
+    inpath = r"../hello.wav"
     bys = anything2bytesio(inpath, sr=16000)
     print(bys)
     wav = anything2wav(bys, sr=16000)

@@ -16,7 +16,7 @@ pip install aukit
     * aukit的默认音频采样率为16k。
 
 ### 版本
-v1.3.10
+v1.3.11
 
 ### audio_cli
 命令行，播放音频，去除背景噪声。
@@ -33,13 +33,13 @@ v1.3.10
 griffinlim声码器，线性频谱转语音，梅尔频谱转语音，TensorFlow版本转语音，梅尔频谱和线性频谱相互转换。
 
 ### audio_io
-语音IO，语音保存、读取，语音格式转换，支持【.】操作符的字典。
+语音IO，语音保存、读取，支持wav和mp3格式，语音形式转换（np.array,bytes,io.BytesIO），支持【.】操作符的字典。
 
 ### audio_noise_remover
 语音降噪，降低环境噪声。
 
 ### audio_normalizer
-语音正则化，去除音量低的音频段，调节音量。
+语音正则化，去除音量低的音频段（去除静音），调节音量。
 语音正则化方法基于VAD的方法。
 
 ### audio_player

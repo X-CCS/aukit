@@ -9,10 +9,8 @@
 from pydub import AudioSegment
 from pydub.silence import detect_nonsilent
 
-from .audio_io import anything2bytesio, _sr
+from .audio_io import anything2bytesio, _sr, _int16_max
 import numpy as np
-
-_int16_max = 2 ** 15 - 1
 
 set_channels = AudioSegment.set_channels
 set_sample_rate = AudioSegment.set_frame_rate

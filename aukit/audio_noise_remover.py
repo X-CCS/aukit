@@ -10,7 +10,7 @@ import numpy as np
 import ctypes as ct
 from .audio_io import load_wav, save_wav
 from .audio_io import _sr
-
+import traceback
 
 def remove_noise(wav: np.array, sr=_sr, **kwargs):
     """
@@ -122,6 +122,7 @@ def remove_noise_os(inpath, outpath, **kwargs):
     except Exception as e:
         print('Error path:', inpath)
         print('Error info:', e)
+        traceback.print_exc()
 
 
 class FloatBits(ct.Structure):

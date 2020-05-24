@@ -4,7 +4,7 @@
 # date: 2019/11/30
 """
 ### audio_normalizer
-语音正则化，去除音量低的音频段，调节音量。
+语音正则化，去除音量低的音频段（去除静音），调节音量。
 语音正则化方法基于VAD的方法。
 """
 from scipy.ndimage.morphology import binary_dilation
@@ -15,9 +15,7 @@ import webrtcvad
 import librosa
 import struct
 
-from .audio_io import Dict2Obj, _sr
-
-_int16_max = 2 ** 15 - 1
+from .audio_io import Dict2Obj, _sr, _int16_max
 
 # Default hyperparameters
 default_hparams = Dict2Obj(dict(
@@ -49,16 +47,20 @@ default_hparams = Dict2Obj(dict(
 ))
 
 
-def remove_silence(wav, vad_max_silence_length=2, vad_window_length=10, vad_moving_average_width=5):
+def remove_silence(wav, sr=_sr, max_silence_ms=20):
     """
     去除语音中的静音。
     :param wav:
-    :param vad_max_silence_length: 单位ms
-    :param vad_window_length: 单位ms
-    :param vad_moving_average_width: 单位ms
+    :param sr:
+    :param max_silence_ms: 单位ms
     :return:
     """
     # Compute the voice detection window size
+    wav = librosa.resample(wav, orig_sr=sr, target_sr=_sr)
+
+    vad_window_length = 20
+    vad_moving_average_width = 10
+
     samples_per_window = (vad_window_length * _sr) // 1000
 
     # Trim the end of the audio to have a multiple of the window size
@@ -79,10 +81,11 @@ def remove_silence(wav, vad_max_silence_length=2, vad_window_length=10, vad_movi
     audio_mask = np.round(audio_mask).astype(np.bool)
 
     # Dilate the voiced regions
-    audio_mask = binary_dilation(audio_mask, np.ones(vad_max_silence_length + 1))
+    audio_mask = binary_dilation(audio_mask, np.ones(max_silence_ms + 1))
     audio_mask = np.repeat(audio_mask, samples_per_window)
-
-    return wav[audio_mask == True]
+    out = wav[audio_mask == True]
+    out = librosa.resample(out, orig_sr=_sr, target_sr=sr)
+    return out
 
 
 def tune_volume(wav, target_dBFS, increase_only=False, decrease_only=False):
@@ -143,9 +146,8 @@ def trim_long_silences(wav, hparams):
     hparams = hparams or default_hparams
 
     wav = remove_silence(wav,
-                         vad_max_silence_length=hparams.vad_max_silence_length,
-                         vad_window_length=hparams.vad_window_length,
-                         vad_moving_average_width=hparams.vad_moving_average_width)
+                         sr=hparams.sample_rate,
+                         max_silence_ms=hparams.vad_max_silence_length)
     return wav
 
 
