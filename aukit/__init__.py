@@ -18,9 +18,12 @@ pip install aukit
     * pyaudio暂不支持python37以上版本直接pip安装，需要下载whl文件安装，下载路径：https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio
     * sounddevice依赖pyaudio。
     * aukit的默认音频采样率为16k。
+
+### v1.3.12
+- 减少不必要的依赖，最低依赖只保留pydub,  scipy, numpy, librosa。
 """
 
-__version__ = '1.3.11'
+__version__ = '1.3.12'
 
 from .audio_io import load_wav, save_wav, anything2bytesio, anything2wav, anything2bytes, Dict2Obj, _sr
 from .audio_editor import strip_audio, remove_silence_audio, split_audio, set_sample_rate
@@ -55,6 +58,9 @@ version_doc = """
 ### 版本
 v{}
 """.format(__version__)
+
+readme_docs = [__doc__, version_doc, cli_doc, changer_doc, editor_doc, griffinlim_doc, io_doc, noise_remover_doc,
+                    normalizer_doc, player_doc, spectrogram_doc, tuner_doc, world_doc]
 
 if __name__ == "__main__":
     print(__file__)

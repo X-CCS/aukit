@@ -7,7 +7,6 @@
 语音播放，传入文件名播放，播放wave数据，播放bytes数据。
 """
 import sys
-import wave
 import time
 import os
 import logging
@@ -19,6 +18,7 @@ from .audio_io import anything2bytesio, anything2wav
 from .audio_io import _sr
 
 try:
+    import wave
     from pyaudio import PyAudio
 except ImportError as e:
     logger.info("ImportError: {}".format(e))

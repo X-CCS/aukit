@@ -7,15 +7,26 @@
 语音正则化，去除音量低的音频段（去除静音），调节音量。
 语音正则化方法基于VAD的方法。
 """
+import os
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(os.path.splitext(os.path.basename(__name__))[0])
+
 from scipy.ndimage.morphology import binary_dilation
 from pathlib import Path
 from typing import Optional, Union
 import numpy as np
-import webrtcvad
 import librosa
 import struct
 
 from .audio_io import Dict2Obj, _sr, _int16_max
+
+try:
+    import webrtcvad
+except ImportError as e:
+    logger.info("ImportError: {}".format(e))
+
 
 # Default hyperparameters
 default_hparams = Dict2Obj(dict(

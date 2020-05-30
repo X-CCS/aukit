@@ -78,12 +78,10 @@ def run_world():
 
 
 def create_readme():
-    from aukit import __doc__, version_doc, cli_doc, changer_doc, editor_doc, griffinlim_doc, io_doc, noise_remover_doc
-    from aukit import normalizer_doc, player_doc, spectrogram_doc, tuner_doc
+    from aukit import readme_docs
     docs = []
     with open("README.md", "wt", encoding="utf8") as fout:
-        for doc in [__doc__, version_doc, cli_doc, changer_doc, editor_doc, griffinlim_doc, io_doc, noise_remover_doc,
-                    normalizer_doc, player_doc, spectrogram_doc, tuner_doc]:
+        for doc in readme_docs:
             fout.write(doc)
             docs.append(doc)
     return "".join(docs)
@@ -92,7 +90,7 @@ def create_readme():
 def run_tuner():
     import aukit
     from aukit.audio_tuner import tune_speed, tune_pitch
-    inpath = r"E:\data\temp\01.wav"
+    inpath = r"hello.wav"
     aukit.anything2bytes(inpath)
     aukit.anything2wav(inpath)
     aukit.anything2bytesio(inpath)
@@ -105,7 +103,7 @@ def run_tuner():
 
 def run_noise_remover():
     import aukit
-    inpath = r"E:\data\temp\01.wav"
+    inpath = r"hello.wav"
     wav = aukit.load_wav(inpath)
     out = aukit.remove_noise(wav)
     aukit.play_audio(out)
@@ -161,7 +159,7 @@ def run_editor():
     import aukit
     from aukit.audio_player import play_sound, play_audio
     from aukit import audio_editor as aed
-    inpath = r"E:\data\temp\01.wav"
+    inpath = r"hello.wav"
     wav, sr = aukit.load_wav(inpath, with_sr=True)
     aud = aed.wav2audiosegment(wav, sr)
     out = aed.strip_audio(aud)

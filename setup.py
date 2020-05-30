@@ -29,19 +29,17 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(os.path.splitext(os.path.basename(__name__))[0])
-install_requires = ['webrtcvad', 'pydub', 'lws', 'scipy', 'numpy', 'librosa', 'pyworld']
-requires = ['tensorflow<=1.13.1', 'pyaudio', 'sounddevice']
+install_requires = ['pydub',  'scipy', 'numpy', 'librosa']
+requires = ['tensorflow<=1.13.1', 'pyaudio', 'webrtcvad', 'lws','sounddevice', 'pyworld']
 
 
 # [w.strip() for w in open("requirements.txt", encoding="utf8") if w.strip()]
 
 def create_readme():
-    from aukit import __doc__, version_doc, cli_doc, changer_doc, editor_doc, griffinlim_doc, io_doc, noise_remover_doc
-    from aukit import normalizer_doc, player_doc, spectrogram_doc, tuner_doc, world_doc
+    from aukit import readme_docs
     docs = []
     with open("README.md", "wt", encoding="utf8") as fout:
-        for doc in [__doc__, version_doc, cli_doc, changer_doc, editor_doc, griffinlim_doc, io_doc, noise_remover_doc,
-                    normalizer_doc, player_doc, spectrogram_doc, tuner_doc, world_doc]:
+        for doc in readme_docs:
             fout.write(doc)
             docs.append(doc)
     return "".join(docs)

@@ -12,9 +12,13 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(os.path.splitext(os.path.basename(__name__))[0])
 
-import pyworld as pw
 import numpy as np
 from .audio_io import _sr
+
+try:
+    import pyworld as pw
+except ImportError as e:
+    logger.info("ImportError: {}".format(e))
 
 
 def world_spectrogram_default(wav, sr=_sr):

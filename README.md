@@ -15,8 +15,11 @@ pip install aukit
     * sounddevice依赖pyaudio。
     * aukit的默认音频采样率为16k。
 
+### v1.3.12
+- 减少不必要的依赖，最低依赖只保留pydub,  scipy, numpy, librosa。
+
 ### 版本
-v1.3.11
+v1.3.12
 
 ### audio_cli
 命令行，播放音频，去除背景噪声。
