@@ -3,6 +3,8 @@
 # @author: KDD
 # @time: 2018-11-10
 """
+![aukit](aukit.png "aukit")
+
 ## aukit
 audio toolkit: 语音和频谱处理的工具箱。
 
