@@ -6,22 +6,25 @@
 ### audio_io
 语音IO，语音保存、读取，支持wav和mp3格式，语音形式转换（np.array,bytes,io.BytesIO），支持【.】操作符的字典。
 """
+from pathlib import Path
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(Path(__name__).stem)
+
 from scipy.io import wavfile
 from pathlib import Path
 import numpy as np
 import librosa
 import io
-import os
-import logging
-
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(os.path.splitext(os.path.basename(__name__))[0])
 
 _sr = 16000
 _int16_max = 2 ** 15 - 1
 
+
 class Dict2Obj(dict):
     """支持【.】操作符的dict。"""
+
     def __init__(self, *args, **kwargs):
         """
         字典的key是合法的变量名字符串才能支持【.】操作符。

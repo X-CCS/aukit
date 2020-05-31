@@ -6,6 +6,12 @@
 ### audio_changer
 变声器，变高低音，变语速，变萝莉音，回声。
 """
+from pathlib import Path
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(Path(__name__).stem)
+
 import numpy as np
 import librosa
 

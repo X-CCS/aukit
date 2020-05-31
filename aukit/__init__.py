@@ -19,11 +19,17 @@ pip install aukit
     * sounddevice依赖pyaudio。
     * aukit的默认音频采样率为16k。
 
+### v1.4.0
+- 增加音频格式转换方法。
+- 命令行批量处理语音，支持音频播放、语音降噪、音频格式转换。
+- 增加命令行工具：auplay, aunoise, auformat。
+- 调整日志输出方法。
+
 ### v1.3.12
 - 减少不必要的依赖，最低依赖只保留pydub,  scipy, numpy, librosa。
 """
 
-__version__ = '1.3.12'
+__version__ = '1.4.0'
 
 from .audio_io import load_wav, save_wav, anything2bytesio, anything2wav, anything2bytes, Dict2Obj, _sr
 from .audio_editor import strip_audio, remove_silence_audio, split_audio, set_sample_rate
@@ -60,7 +66,7 @@ v{}
 """.format(__version__)
 
 readme_docs = [__doc__, version_doc, cli_doc, changer_doc, editor_doc, griffinlim_doc, io_doc, noise_remover_doc,
-                    normalizer_doc, player_doc, spectrogram_doc, tuner_doc, world_doc]
+               normalizer_doc, player_doc, spectrogram_doc, tuner_doc, world_doc]
 
 if __name__ == "__main__":
     print(__file__)

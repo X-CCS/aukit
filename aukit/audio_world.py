@@ -6,11 +6,11 @@
 ### audio_world
 world声码器，提取语音的基频、频谱包络和非周期信号，频谱转为语音。调音高，调机器人音。
 """
-import os
+from pathlib import Path
 import logging
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(os.path.splitext(os.path.basename(__name__))[0])
+logger = logging.getLogger(Path(__name__).stem)
 
 import numpy as np
 from .audio_io import _sr

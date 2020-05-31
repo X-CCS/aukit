@@ -7,11 +7,11 @@
 语音正则化，去除音量低的音频段（去除静音），调节音量。
 语音正则化方法基于VAD的方法。
 """
-import os
+from pathlib import Path
 import logging
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(os.path.splitext(os.path.basename(__name__))[0])
+logger = logging.getLogger(Path(__name__).stem)
 
 from scipy.ndimage.morphology import binary_dilation
 from pathlib import Path

@@ -6,6 +6,12 @@
 ### audio_tuner
 语音调整，调整语速，调整音高。
 """
+from pathlib import Path
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(Path(__name__).stem)
+
 from pydub import AudioSegment
 from scipy.io import wavfile
 import numpy as np

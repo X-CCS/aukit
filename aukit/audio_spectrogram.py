@@ -6,6 +6,12 @@
 ### audio_spectrogram
 语音频谱，语音转线性频谱，语音转梅尔频谱。
 """
+from pathlib import Path
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(Path(__name__).stem)
+
 from scipy.signal import lfilter
 import math
 import numpy as np

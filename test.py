@@ -197,7 +197,7 @@ def test_audio_editor():
 def test_normalizer():
     from aukit.audio_normalizer import tune_volume, remove_silence
 
-    out_wav = remove_silence(_wav, vad_max_silence_length=2)
+    out_wav = remove_silence(_wav, max_silence_ms=20)
     out_wav = tune_volume(_wav, target_dBFS=-10)
 
 

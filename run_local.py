@@ -171,6 +171,31 @@ def run_editor():
     print(len(wav), len(out))
     play_audio(out, sr)
 
+from aukit.audio_editor import convert_format_os
+def convert_format(x):
+    return convert_format_os(**x)
+
+def run_cli():
+    from aukit.audio_cli import pool_jobs
+
+    from pathlib import Path
+
+
+    indir = Path(r"E:\lab\zhrtvc\data\samples\aishell")
+    outdir = Path(r"E:\lab\zhrtvc\data\samples_wav\aishell")
+
+    kw_lst = []
+    for inpath in indir.glob("**/*.mp3"):
+        parts = inpath.parent.relative_to(indir).parts
+        name = "{}.{}".format(inpath.stem, 'wav')
+        outpath = outdir.joinpath(*parts, name)
+        outpath.parent.mkdir(exist_ok=True, parents=True)
+        kw = dict(inpath=str(inpath), outpath=str(outpath), in_format=None, out_format='wav')
+        kw_lst.append(kw)
+
+    pool_jobs(func=convert_format, n_process=14, kwargs_list=kw_lst, tqdm_desc='convert_format')
+
+
 
 if __name__ == "__main__":
     print(__file__)
@@ -182,5 +207,6 @@ if __name__ == "__main__":
     # run_player()
     # run_aukit()
     # compare_hparams()
-    run_normalizer()
+    # run_normalizer()
     # run_editor()
+    run_cli()

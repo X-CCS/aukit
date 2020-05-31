@@ -29,8 +29,8 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(os.path.splitext(os.path.basename(__name__))[0])
-install_requires = ['pydub',  'scipy', 'numpy', 'librosa']
-requires = ['tensorflow<=1.13.1', 'pyaudio', 'webrtcvad', 'lws','sounddevice', 'pyworld']
+install_requires = ['pydub', 'scipy', 'numpy', 'librosa']
+requires = ['tensorflow<=1.13.1', 'pyaudio', 'webrtcvad', 'lws', 'sounddevice', 'pyworld']
 
 
 # [w.strip() for w in open("requirements.txt", encoding="utf8") if w.strip()]
@@ -40,7 +40,7 @@ def create_readme():
     docs = []
     with open("README.md", "wt", encoding="utf8") as fout:
         for doc in readme_docs:
-            fout.write(doc)
+            fout.write(doc.replace("\n", "\n\n"))
             docs.append(doc)
     return "".join(docs)
 
@@ -82,8 +82,9 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'aup = aukit.audio_cli:play_audio_cli',
-            'aur = aukit.audio_cli:play_audio_cli'
+            'auplay = aukit.audio_cli:play_audio_cli',
+            'aunoise = aukit.audio_cli:remove_noise_cli',
+            'auformat = aukit.audio_cli:convert_format_cli'
         ]
     }
 )

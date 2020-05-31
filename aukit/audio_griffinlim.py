@@ -6,18 +6,19 @@
 ### audio_griffinlim
 griffinlim声码器，线性频谱转语音，梅尔频谱转语音，TensorFlow版本转语音，梅尔频谱和线性频谱相互转换。
 """
+from pathlib import Path
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(Path(__name__).stem)
+
 import librosa
 import librosa.filters
 import numpy as np
 from scipy import signal
 from scipy.io import wavfile
-import os
-import logging
 from .audio_spectrogram import default_hparams
 from .audio_io import Dict2Obj
-
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(os.path.splitext(os.path.basename(__name__))[0])
 
 # try:
 #     import tensorflow as tf

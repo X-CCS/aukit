@@ -6,13 +6,14 @@
 ### audio_player
 语音播放，传入文件名播放，播放wave数据，播放bytes数据。
 """
-import sys
-import time
-import os
+from pathlib import Path
 import logging
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(os.path.splitext(os.path.basename(__name__))[0])
+logger = logging.getLogger(Path(__name__).stem)
+
+import sys
+import time
 
 from .audio_io import anything2bytesio, anything2wav
 from .audio_io import _sr
