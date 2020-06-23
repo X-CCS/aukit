@@ -36,7 +36,7 @@ pip install -U aukit
 - 减少不必要的依赖，最低依赖只保留pydub,  scipy, numpy, librosa。
 """
 
-__version__ = '1.4.1'
+__version__ = '1.4.2'
 
 from .audio_io import load_wav, save_wav, anything2bytesio, anything2wav, anything2bytes, Dict2Obj, _sr
 from .audio_editor import strip_audio, remove_silence_audio, split_audio, convert_sample_rate

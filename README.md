@@ -36,7 +36,7 @@ pip install -U aukit
 
 
 
-### v1.4.1
+### v1.4.2
 
 - 修正安装依赖报错的bugs。
 
@@ -66,7 +66,7 @@ pip install -U aukit
 
 ### 版本
 
-v1.4.1
+v1.4.2
 
 
 
