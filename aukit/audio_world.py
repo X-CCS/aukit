@@ -83,7 +83,7 @@ def inv_world_spectrogram(f0, sp, ap, sr=_sr, **kwargs):
 def change_voice(wav, sr=_sr, mode="tune_pitch", alpha=1., fix=True):
     """
     变声。
-    :param x:
+    :param wav:
     :param sr:
     :param mode:
     :param alpha:

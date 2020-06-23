@@ -11,7 +11,7 @@ audio toolkit: 语音和频谱处理的工具箱。
 ### 安装
 
 ```
-pip install aukit
+pip install -U aukit
 ```
 
 - 注意
@@ -20,6 +20,11 @@ pip install aukit
     * pyaudio暂不支持python37以上版本直接pip安装，需要下载whl文件安装，下载路径：https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio
     * sounddevice依赖pyaudio。
     * aukit的默认音频采样率为16k。
+
+### v1.4.1
+- 修正安装依赖报错的bugs。
+- set系列改为convert系列，如set_sample_rate改为convert_sample_rate。
+- Dict2Obj用dotmap模块的DotMap代替。
 
 ### v1.4.0
 - 增加音频格式转换方法。
@@ -31,10 +36,10 @@ pip install aukit
 - 减少不必要的依赖，最低依赖只保留pydub,  scipy, numpy, librosa。
 """
 
-__version__ = '1.4.0'
+__version__ = '1.4.1'
 
 from .audio_io import load_wav, save_wav, anything2bytesio, anything2wav, anything2bytes, Dict2Obj, _sr
-from .audio_editor import strip_audio, remove_silence_audio, split_audio, set_sample_rate
+from .audio_editor import strip_audio, remove_silence_audio, split_audio, convert_sample_rate
 from .audio_editor import strip_silence_wave, remove_silence_wave, split_silence_wave
 from .audio_tuner import tune_pitch, tune_speed
 from .audio_player import play_audio, play_sound

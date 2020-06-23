@@ -17,27 +17,12 @@ from pathlib import Path
 import numpy as np
 import librosa
 import io
+from dotmap import DotMap
 
 _sr = 16000
 _int16_max = 2 ** 15 - 1
 
-
-class Dict2Obj(dict):
-    """支持【.】操作符的dict。"""
-
-    def __init__(self, *args, **kwargs):
-        """
-        字典的key是合法的变量名字符串才能支持【.】操作符。
-        :param args:
-        :param kwargs:
-        """
-        super(Dict2Obj, self).__init__(*args, **kwargs)
-
-    def __getattr__(self, key):
-        value = self[key]
-        if isinstance(value, dict):
-            value = Dict2Obj(value)
-        return value
+Dict2Obj = DotMap
 
 
 def load_wav(path, sr=None, with_sr=False):

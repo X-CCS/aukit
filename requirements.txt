@@ -8,3 +8,4 @@ pyworld
 tensorflow<=1.13.1
 pyaudio
 sounddevice
+dotmap

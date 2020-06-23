@@ -1,5 +1,8 @@
 
+
 ![aukit](aukit.png "aukit")
+
+
 
 ## aukit
 
@@ -13,7 +16,7 @@ audio toolkit: 语音和频谱处理的工具箱。
 
 ```
 
-pip install aukit
+pip install -U aukit
 
 ```
 
@@ -30,6 +33,16 @@ pip install aukit
     * sounddevice依赖pyaudio。
 
     * aukit的默认音频采样率为16k。
+
+
+
+### v1.4.1
+
+- 修正安装依赖报错的bugs。
+
+- set系列改为convert系列，如set_sample_rate改为convert_sample_rate。
+
+- Dict2Obj用dotmap模块的DotMap代替。
 
 
 
@@ -53,7 +66,7 @@ pip install aukit
 
 ### 版本
 
-v1.4.0
+v1.4.1
 
 
 

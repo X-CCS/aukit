@@ -21,21 +21,21 @@ import numpy as np
 import io
 
 
-def set_channels(wav, sr=_sr, value=1):
+def convert_channels(wav, sr=_sr, value=1):
     aud = wav2audiosegment(wav, sr=sr)
     aud = aud.set_channels(channels=value)
     wav = audiosegment2wav(aud)
     return wav
 
 
-def set_sample_rate(wav, sr=_sr, value=_sr):
+def convert_sample_rate(wav, sr=_sr, value=_sr):
     aud = wav2audiosegment(wav, sr=sr)
     aud = aud.set_frame_rate(frame_rate=value)
     wav = audiosegment2wav(aud)
     return wav
 
 
-def set_sample_width(wav, sr=_sr, value=4):
+def convert_sample_width(wav, sr=_sr, value=4):
     aud = wav2audiosegment(wav, sr=sr)
     aud = aud.set_sample_width(sample_width=value)
     wav = audiosegment2wav(aud)
