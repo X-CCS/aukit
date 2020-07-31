@@ -117,7 +117,11 @@ def tune_pitch(f0, sp, ap, rate=1., fix=False):
 
 def tune_robot(f0, sp, ap, rate=1., fix=False):
     """调机器人音"""
-    m = np.percentile(f0[f0 > 0], 61.8)
+    tmp = f0[f0 > 0]
+    if len(tmp) >= 1:
+        m = np.percentile(tmp, 61.8)
+    else:
+        m = 1
     f0_out = np.ones_like(f0) * m * rate
     if fix:
         sp = fix_sp(sp, rate)
@@ -126,7 +130,11 @@ def tune_robot(f0, sp, ap, rate=1., fix=False):
 
 def assign_pitch(f0, sp, ap, base=250, fix=False):
     """指定音高"""
-    m = np.percentile(f0[f0 > 0], 61.8)
+    tmp = f0[f0 > 0]
+    if len(tmp) >= 1:
+        m = np.percentile(tmp, 61.8)
+    else:
+        m = 1
     rate = base / m
     f0_out = f0 * rate
     if fix:
@@ -136,7 +144,11 @@ def assign_pitch(f0, sp, ap, base=250, fix=False):
 
 def assign_robot(f0, sp, ap, base=250, fix=False):
     """指定音高的机器人音"""
-    m = np.percentile(f0[f0 > 0], 61.8)
+    tmp = f0[f0 > 0]
+    if len(tmp) >= 1:
+        m = np.percentile(tmp, 61.8)
+    else:
+        m = 1
     rate = base / m
     f0_out = np.ones_like(f0) * m * rate
     if fix:

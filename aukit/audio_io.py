@@ -22,7 +22,18 @@ from dotmap import DotMap
 _sr = 16000
 _int16_max = 2 ** 15 - 1
 
-Dict2Obj = DotMap
+
+class Dict2Obj(DotMap):
+    """
+    修正DotMap的get方法生成DotMap对象的bug。
+    Dict2Obj的get方法和dict的get功能相同。
+    """
+
+    def __getitem__(self, k):
+        if k not in self._map:
+            return None
+        else:
+            return self._map[k]
 
 
 def load_wav(path, sr=None, with_sr=False):

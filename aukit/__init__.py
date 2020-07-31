@@ -21,6 +21,10 @@ pip install -U aukit
     * sounddevice依赖pyaudio。
     * aukit的默认音频采样率为16k。
 
+### v1.4.3
+- 修正Dict2Obj的get方法达不到预期的bug。
+- 修正world声码器变声静音报错的bug。
+
 ### v1.4.1
 - 修正安装依赖报错的bugs。
 - set系列改为convert系列，如set_sample_rate改为convert_sample_rate。
@@ -36,7 +40,7 @@ pip install -U aukit
 - 减少不必要的依赖，最低依赖只保留pydub,  scipy, numpy, librosa。
 """
 
-__version__ = '1.4.2'
+__version__ = '1.4.3'
 
 from .audio_io import load_wav, save_wav, anything2bytesio, anything2wav, anything2bytes, Dict2Obj, _sr
 from .audio_editor import strip_audio, remove_silence_audio, split_audio, convert_sample_rate

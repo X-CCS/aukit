@@ -36,7 +36,15 @@ pip install -U aukit
 
 
 
-### v1.4.2
+### v1.4.3
+
+- 修正Dict2Obj的get方法达不到预期的bug。
+
+- 修正world声码器变声静音报错的bug。
+
+
+
+### v1.4.1
 
 - 修正安装依赖报错的bugs。
 
@@ -66,7 +74,7 @@ pip install -U aukit
 
 ### 版本
 
-v1.4.2
+v1.4.3
 
 
 
