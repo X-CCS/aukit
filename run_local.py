@@ -105,9 +105,13 @@ def run_tuner():
 
 def run_noise_remover():
     import aukit
-    inpath = r"hello.wav"
-    wav = aukit.load_wav(inpath)
+    # inpath = r"hello.wav"
+    inpath = r"提取人声_1.wav"
+    outpath = r"./提取人声_1_test.wav"
+    # wav = aukit.load_wav(inpath)
+    wav, sr = aukit.load_wav(inpath, with_sr=True)
     out = aukit.remove_noise(wav)
+    save_wav(out, outpath, sr)
     aukit.play_audio(out)
 
 
