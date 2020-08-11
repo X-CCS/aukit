@@ -150,9 +150,10 @@ def run_normalizer():
     import aukit
     from aukit.audio_player import play_sound
     from aukit import audio_normalizer as ano
-    inpath = r"hello.wav"
-    outpath = r"./hello_test.wav"
-    # inpath = r"提取人声_1.wav"
+    # inpath = r"hello.wav"
+    # outpath = r"./hello_test.wav"
+    inpath = r"提取人声_1.wav"
+    outpath = r"./1_test.wav"
     # inpath = r"提取人声_2.wav"
     # inpath = r"提取人声_3.wav"
     wav, sr = aukit.load_wav(inpath, with_sr=True)
