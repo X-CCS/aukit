@@ -171,8 +171,9 @@ def run_editor():
     import aukit
     from aukit.audio_player import play_sound, play_audio
     from aukit import audio_editor as aed
-    inpath = r"hello.wav"
-    # inpath = r"提取人声_1.wav"
+    # inpath = r"hello.wav"
+    inpath = r"提取人声_1.wav"
+    outpath = r"./提取人声_1_test.wav"
     wav, sr = aukit.load_wav(inpath, with_sr=True)
     aud = aed.wav2audiosegment(wav, sr)
     out = aed.strip_audio(aud)
@@ -180,7 +181,7 @@ def run_editor():
 
     out = aed.remove_silence_wave(wav, sr=sr)
     out = aed.strip_silence_wave(out, sr=sr)
-    # save_wav(out, outpath, sr)
+    save_wav(out, outpath, sr)
     print(len(wav), len(out))
     play_audio(out, sr)
 
