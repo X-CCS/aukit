@@ -1,0 +1,1 @@
+git remote add upstream git@github.com:KuangDD/aukit.git

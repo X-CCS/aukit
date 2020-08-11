@@ -149,6 +149,9 @@ def run_normalizer():
     from aukit.audio_player import play_sound
     from aukit import audio_normalizer as ano
     inpath = r"hello.wav"
+    # inpath = r"提取人声_1.wav"
+    # inpath = r"提取人声_2.wav"
+    # inpath = r"提取人声_3.wav"
     wav, sr = aukit.load_wav(inpath, with_sr=True)
     out = ano.remove_silence(wav)
     out = ano.tune_volume(wav, target_dBFS=-10)
@@ -207,6 +210,6 @@ if __name__ == "__main__":
     # run_player()
     # run_aukit()
     # compare_hparams()
-    # run_normalizer()
+    run_normalizer()
     # run_editor()
-    run_cli()
+    # run_cli()
