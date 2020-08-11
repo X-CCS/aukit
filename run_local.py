@@ -108,10 +108,11 @@ def run_noise_remover():
     # inpath = r"hello.wav"
     inpath = r"提取人声_1.wav"
     outpath = r"./2_1_test.wav"
-    # wav = aukit.load_wav(inpath)
-    wav, sr = aukit.load_wav(inpath, with_sr=True)
+    wav = aukit.load_wav(inpath)
+    # wav, sr = aukit.load_wav(inpath, with_sr=True)
     out = aukit.remove_noise(wav)
-    save_wav(out, outpath, sr)
+    # save_wav(out, outpath, sr)
+    save_wav(out, outpath)
     aukit.play_audio(out)
 
 
