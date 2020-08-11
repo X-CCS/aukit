@@ -172,6 +172,7 @@ def run_editor():
     from aukit.audio_player import play_sound, play_audio
     from aukit import audio_editor as aed
     inpath = r"hello.wav"
+    # inpath = r"提取人声_1.wav"
     wav, sr = aukit.load_wav(inpath, with_sr=True)
     aud = aed.wav2audiosegment(wav, sr)
     out = aed.strip_audio(aud)
@@ -179,7 +180,7 @@ def run_editor():
 
     out = aed.remove_silence_wave(wav, sr=sr)
     out = aed.strip_silence_wave(out, sr=sr)
-
+    # save_wav(out, outpath, sr)
     print(len(wav), len(out))
     play_audio(out, sr)
 
@@ -215,10 +216,10 @@ if __name__ == "__main__":
     # run_world()
     # create_readme()
     # run_tuner()
-    run_noise_remover()
+    # run_noise_remover()
     # run_player()
     # run_aukit()
     # compare_hparams()
     # run_normalizer()
-    # run_editor()
+    run_editor()
     # run_cli()
