@@ -20,27 +20,9 @@ pip install -U aukit
     * pyaudio暂不支持python37以上版本直接pip安装，需要下载whl文件安装，下载路径：https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio
     * sounddevice依赖pyaudio。
     * aukit的默认音频采样率为16k。
-
-### v1.4.3
-- 修正Dict2Obj的get方法达不到预期的bug。
-- 修正world声码器变声静音报错的bug。
-
-### v1.4.1
-- 修正安装依赖报错的bugs。
-- set系列改为convert系列，如set_sample_rate改为convert_sample_rate。
-- Dict2Obj用dotmap模块的DotMap代替。
-
-### v1.4.0
-- 增加音频格式转换方法。
-- 命令行批量处理语音，支持音频播放、语音降噪、音频格式转换。
-- 增加命令行工具：auplay, aunoise, auformat。
-- 调整日志输出方法。
-
-### v1.3.12
-- 减少不必要的依赖，最低依赖只保留pydub,  scipy, numpy, librosa。
 """
 
-__version__ = '1.4.3'
+__version__ = '1.4.4'
 
 from .audio_io import load_wav, save_wav, anything2bytesio, anything2wav, anything2bytes, Dict2Obj, _sr
 from .audio_editor import strip_audio, remove_silence_audio, split_audio, convert_sample_rate
@@ -76,8 +58,33 @@ version_doc = """
 v{}
 """.format(__version__)
 
+history_doc = """
+### 历史版本
+
+#### v1.4.4
+- Dict2Obj方法增加parse方法。
+
+#### v1.4.3
+- 修正Dict2Obj的get方法达不到预期的bug。
+- 修正world声码器变声静音报错的bug。
+
+#### v1.4.1
+- 修正安装依赖报错的bugs。
+- set系列改为convert系列，如set_sample_rate改为convert_sample_rate。
+- Dict2Obj用dotmap模块的DotMap代替。
+
+#### v1.4.0
+- 增加音频格式转换方法。
+- 命令行批量处理语音，支持音频播放、语音降噪、音频格式转换。
+- 增加命令行工具：auplay, aunoise, auformat。
+- 调整日志输出方法。
+
+#### v1.3.12
+- 减少不必要的依赖，最低依赖只保留pydub,  scipy, numpy, librosa。
+"""
+
 readme_docs = [__doc__, version_doc, cli_doc, changer_doc, editor_doc, griffinlim_doc, io_doc, noise_remover_doc,
-               normalizer_doc, player_doc, spectrogram_doc, tuner_doc, world_doc]
+               normalizer_doc, player_doc, spectrogram_doc, tuner_doc, world_doc, history_doc]
 
 if __name__ == "__main__":
     print(__file__)

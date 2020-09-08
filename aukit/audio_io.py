@@ -17,6 +17,7 @@ from pathlib import Path
 import numpy as np
 import librosa
 import io
+import json
 from dotmap import DotMap
 
 _sr = 16000
@@ -34,6 +35,13 @@ class Dict2Obj(DotMap):
             return None
         else:
             return self._map[k]
+
+    def parse(self, json_string):
+        if json_string.strip():
+            _hp = json.loads(json_string)
+            for k, v in _hp.items():
+                self[k] = v
+        return self
 
 
 def load_wav(path, sr=None, with_sr=False):
