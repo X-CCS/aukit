@@ -209,4 +209,4 @@ if __name__ == "__main__":
     # compare_hparams()
     # run_normalizer()
     # run_editor()
-    run_cli()
+    # run_cli()
